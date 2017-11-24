@@ -152,7 +152,7 @@ module Msgmaker
 
 
 
-keep counting..
+keep counting.. += 1
 
 ```ruby
 class User < ActiveRecord::Base
@@ -164,7 +164,7 @@ end
 
 
 
-#### 5.3. 친구 추가/차단 알림 API
+#### 5.3. 친구 추가/차단/삭제 카운팅 API
 
 rails g model user chat_room:integer user_key
 
@@ -175,5 +175,13 @@ find_by로 찾아서
 ```ruby
 User.create(user_key: params[:user_key], chat_room: 0)	
 render nothing: true
+```
+
+
+
+delete또한 :user_key 추가 필요
+
+```ruby
+delete '/friend/:user_key' => 'kakao#friend_del'
 ```
 
